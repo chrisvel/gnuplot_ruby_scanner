@@ -25,3 +25,9 @@ I'd say that a value between 9-10 is the best choice. Creating more threads caus
 ### How to Use?
 
 When it's finished, the plot will pop up when you can export it.
+
+- How do I initialize Scanner?
+`sc = Scanner.new(<network>, <passes>, <pool>)`
+  - __network:__ The network you want to scan e.g._'192.168.1.0/24'_
+  - __passes:__ How many times to repeat scanning e.g. _8_
+  - __pool:__ Maximum amount of threads in the pool e.g. _20_
