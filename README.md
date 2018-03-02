@@ -11,7 +11,8 @@
 * Displays a gnuplot with multiple datasets from pools/passes.
 
 #### Screenshot
-=> __8 Passes, with a thread pool of 20 threads__
+=> __8 Passes, with a thread pool of 20 threads__  
+
 I'd say that a value between 9-10 is the best choice. Creating more threads causes instability and even slower speeds.
 
 ![Screenshot Running Command](/plot/top_ports_10_passes_20.png?raw=true "Running command screenshot")
