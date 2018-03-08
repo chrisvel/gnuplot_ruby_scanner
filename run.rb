@@ -7,8 +7,8 @@ require 'gnuplot'
 class Scanner
   def initialize(network, passes, pool)
     @network = network
-    @passes = 8
-    @thread_pool = 20
+    @passes = passes
+    @thread_pool = pool
     @victims = []
   end
 
@@ -59,6 +59,7 @@ class Scanner
 
     done = 0
 
+    lock = Mutex.new
     workers = (0..thread_pool).map do
       Thread.new do
         begin
@@ -66,7 +67,6 @@ class Scanner
             # Here goes the main job
             # print "Thread.new: #{x[:iter]} #{x[:ip_addr]}\n"
             scan_for_ports(x[:ip_addr])
-            lock = Mutex.new
             lock.synchronize do
               done += 1
             end
@@ -118,7 +118,7 @@ class Scanner
           end
         end
 
-        puts data_filtered.inspect
+        # puts data_filtered.inspect
 
         avg = data_filtered.transpose.map{|arr| arr.inject(:+) / arr.size}
 
@@ -133,5 +133,5 @@ class Scanner
 
 end
 
-sc = Scanner.new('192.168.1.0/24', 8, 1)
+sc = Scanner.new('192.168.144.0/24', 2, 8)
 sc.gen_plot
